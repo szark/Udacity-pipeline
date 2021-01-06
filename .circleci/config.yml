@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   print_hello:
     docker:
@@ -22,7 +22,7 @@ jobs:
           command: |
             echo $MY_OWN
 workflows:
-  version: 2
+  version: 2.1
   print_hello_and_world:
     jobs:
       - print_hello
