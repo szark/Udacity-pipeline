@@ -18,9 +18,9 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "My name is"
-        command: |
-          echo $MY_OWN
+          name: "My name is"
+          command: |
+            echo $MY_OWN
 workflows:
   version: 2
   print_hello_and_world:
