@@ -6,14 +6,12 @@ jobs:
     steps:
       - checkout
       - run: echo "Hello"
-      - run: sleep 25
   print_world:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
       - run: echo "world"
-      - run: sleep 25
 workflows:
   version: 2
   print_hello_and_world:
