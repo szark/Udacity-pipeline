@@ -1,22 +1,24 @@
 version: 2
 jobs:
-  one:
+  print_hello:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: echo "Hello"
       - run: sleep 25
-  two:
+  print_world:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: echo "Next step"
+      - run: echo "world"
       - run: sleep 25
 workflows:
   version: 2
-  one_and_two:
+  print_hello_and_world:
     jobs:
-      - one
-      - two
+      - print_hello
+      - print_world:
+        requires:
+          - print_hello
