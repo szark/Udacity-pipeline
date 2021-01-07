@@ -43,9 +43,5 @@ workflows:
   version: 2.1
   print_hello_and_world:
     jobs:
-      - print_hello
-      - print_world:
-          requires:
-            - print_hello
-      - print_my_name
       - save_hello_world_output
+      - print_hello_world_output
