@@ -37,7 +37,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-        at: .
+          at: .
       - run: cat output.txt
 workflows:
   version: 2.1
