@@ -28,9 +28,9 @@ jobs:
       - checkout
       - run: echo "text to output here" > output.txt
       - persist_to_workspace:
-          root: /tmp
+          root: .
           paths:
-            - output.txt
+            - .
 workflows:
   version: 2.1
   print_hello_and_world:
