@@ -31,6 +31,14 @@ jobs:
           root: .
           paths:
             - .
+  print_hello_world_output:
+    docker: 
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - attach_workspace:
+        at: .
+      - run: cat output.txt
 workflows:
   version: 2.1
   print_hello_and_world:
