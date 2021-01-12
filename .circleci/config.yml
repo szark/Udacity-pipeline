@@ -4,45 +4,16 @@ commands:
     steps:
       - run: echo ${CIRCLE_WORKFLOW_ID}
 jobs:
-  print_hello:
+  test_on_fail:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - checkout
-      - run: echo "Hello"
-  print_world:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - run: echo "world"
-  print_my_name:
-    docker:
-      - image: cimg/base:2020.01
-    steps:
-      - checkout
-      - run:
-          name: "My name is"
-          command: |
-            echo $MY_OWN
-  save_hello_world_output:
-    docker: 
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - run: echo "text to output here" > output.txt
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-  print_hello_world_output:
-    docker: 
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run: cat output.txt
+      - run: return 0
+
+      - run: 
+          name: Warn when something is wrong
+          command: echo 'Oopps'
+          when: on_fail
   print_workflow_id:
     docker:
       - image: circleci/node:13.8.0
@@ -52,8 +23,5 @@ workflows:
   version: 2.1
   print_hello_and_world:
     jobs:
-      - save_hello_world_output
-      - print_hello_world_output:
-          requires:
-            - save_hello_world_output
+      - test_on_fail
       - print_workflow_id
