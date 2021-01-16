@@ -9,7 +9,7 @@ jobs:
 
       - run: 
           name: Spin up the infra
-          command: aws cloudformation deploy --template-file template.yml --stack-name circleci
+          command: aws cloudformation deploy --template-file template.yml --stack-name circleci --region=us-west-2
 workflows:
   version: 2.1
   print_hello_and_world:
