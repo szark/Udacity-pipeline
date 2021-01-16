@@ -1,17 +1,18 @@
-Ec2Instance:
-  Type: 'AWS::EC2::Instance'
-  Properties:
-    SecurityGroups:
-      - !Ref InstanceSecurityGroup
-    KeyName: jumphost_oregon_mac
-    ImageID: 'ami-068663a3c619dd892'
-    InstanceType: t3.micro
-InstanceSecurityGroup:
-  Type: 'AWS::EC2::SecurityGroup'
-  Properties:
-    GroupDescription: Enable security via port 22
-    SecurityGroupIngress:
-      - IpProtocol: tcp
-        FromPort: '22'
-        ToPort: '22'
-        CidrIp: 0.0.0.0/0
+Resources:
+  Ec2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      SecurityGroups:
+        - !Ref InstanceSecurityGroup
+      KeyName: jumphost_oregon_mac
+      ImageID: 'ami-068663a3c619dd892'
+      InstanceType: t3.micro
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable security via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0
