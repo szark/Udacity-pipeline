@@ -5,7 +5,7 @@ Resources:
       SecurityGroups:
         - !Ref InstanceSecurityGroup
       KeyName: jumphost_oregon_mac
-      ImageID: 'ami-089668cd321f3cf82'
+      ImageID: ami-0cc158853935719b7
       InstanceType: t3.micro
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
