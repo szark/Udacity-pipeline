@@ -6,6 +6,7 @@ Ec2Instance:
       - !Ref InstanceSecurityGroup
     KeyName: jumphost_oregon_mac
     ImageID: 'ami-068663a3c619dd892'
+    InstanceType: t3.micro
 InstanceSecurityGroup:
   Type: 'AWS::EC2::SecurityGroup'
   Properties:
