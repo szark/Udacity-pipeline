@@ -1,24 +1,22 @@
 version: 2.1
 
 jobs:
-  create_infra:
+  smoke_test:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: alpine:latest
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints: ["db:7e:2c:16:99:44:b3:53:39:8a:0c:bb:05:1d:8a:8a"]
       - run:
-          name: Install dependencies
+          name: check webpage
           command: |
-            apk add --update ansible
-      - run:
-          name: Configure server
-          command: |
-            ansible-playbook -i ansible/inventory ansible/main.yml
+            if curl -s --head http://google.com
+            then
+              echo "It works"
+            else
+              echo "it doesn't work"
 
 workflows:
   version: 2.1
-  configure_and_deploy:
+  smoke_test:
     jobs:
-      - create_infra
+      - smoke_test
