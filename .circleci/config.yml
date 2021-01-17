@@ -13,7 +13,7 @@ jobs:
       - run:
           name: check webpage
           command: |
-            if curl -s --head http://google.com
+            if curl -s --head http://google333.com
             then
               echo "It works"
             else
