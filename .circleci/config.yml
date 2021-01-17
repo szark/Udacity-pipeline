@@ -27,8 +27,8 @@ jobs:
           name: Promote to prod
           command: |
             aws cloudformation deploy \
-            --template-file cloudfront.yml
-            --stack-name cloudfront
+            --template-file cloudfront.yml \
+            --stack-name cloudfront \
             --parameter-overrides PipelineID=s-${CIRCLE_WORKFLOW_ID:0:7}
      
 workflows:
