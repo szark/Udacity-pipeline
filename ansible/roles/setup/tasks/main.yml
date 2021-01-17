@@ -1,0 +1,39 @@
+---
+- name: "Update apt packages"
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: "Upgrade packages"
+  become: yes
+  apt:
+    upgrade: yes
+
+- name: "Install nodejs"
+  become: yes
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
+
+- name: "Install pm2"
+  become: yes
+  npm:
+    name: pm2
+    state: present
+    global: yes
+    production: yes
+
+- name: "Create web dir"
+  file:
+    path: /tmp/web
+    state: directory
+
+- name: "copy web app"
+  template: 
+    src: "files/index.js"
+    dest: "/tmp/web/index.js"
+
+- name: "Fire the page"
+  shell: |
+    pm2 start /tmp/web/index.js -f

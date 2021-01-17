@@ -3,15 +3,22 @@ version: 2.1
 jobs:
   create_infra:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
+      - add_ssh_key:
+          fingerprints: ["db:7e:2c:16:99:44:b3:53:39:8a:0c:bb:05:1d:8a:8a"]
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update ansible
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i ansible/inventory ansible/main.yml
 
-      - run: 
-          name: Spin up the infra
-          command: aws cloudformation deploy --template-file template.yml --stack-name circleci --region=us-west-2
 workflows:
   version: 2.1
-  print_hello_and_world:
+  configure_and_deploy:
     jobs:
       - create_infra
