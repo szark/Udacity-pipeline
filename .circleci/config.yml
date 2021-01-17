@@ -23,7 +23,7 @@ jobs:
           command: return 1
 
       - destroy_environment
-        when: on_fail
+          when: on_fail
 workflows:
   version: 2.1
   print_hello_and_world:
