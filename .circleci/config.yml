@@ -18,6 +18,7 @@ jobs:
               echo "It works"
             else
               echo "it doesn't work"
+              exit 1
             fi
 
 workflows:
