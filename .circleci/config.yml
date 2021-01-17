@@ -11,8 +11,8 @@ jobs:
           command: |
             aws cloudformation deploy \
             --template-file bucket.yml \
-            --stack-name ${CIRCLE_WORKFLOW_ID} \
-            --parameter-overrides NAME=S-${CIRCLE_WORKFLOW_ID} \
+            --stack-name S-${CIRCLE_WORKFLOW_ID:0:7} \
+            --parameter-overrides NAME=S-${CIRCLE_WORKFLOW_ID:0:7 \
             --region=us-west-2
       - run: 
           name: Move files there
