@@ -11,13 +11,13 @@ jobs:
           command: |
             aws cloudformation deploy \
             --template-file bucket.yml \
-            --stack-name S-${CIRCLE_WORKFLOW_ID:0:7} \
-            --parameter-overrides NAME=S-${CIRCLE_WORKFLOW_ID:0:7} \
+            --stack-name s-${CIRCLE_WORKFLOW_ID:0:7} \
+            --parameter-overrides NAME=s-${CIRCLE_WORKFLOW_ID:0:7} \
             --region us-west-2
       - run: 
           name: Move files there
           command: |
-            aws s3 sync . s3://S-${CIRCLE_WORKFLOW_ID:0:7} --delete
+            aws s3 sync . s3://s-${CIRCLE_WORKFLOW_ID:0:7} --delete
   promote_to_prod:
     docker:
       - image: amazon/aws-cli
@@ -29,7 +29,7 @@ jobs:
             aws cloudformation deploy \
             --template-file cloudfront.yml
             --stack-name cloudfront
-            --parameter-overrides PipelineID=S-${CIRCLE_WORKFLOW_ID:0:7}
+            --parameter-overrides PipelineID=s-${CIRCLE_WORKFLOW_ID:0:7}
      
 workflows:
   version: 2.1
