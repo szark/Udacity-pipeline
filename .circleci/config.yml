@@ -36,6 +36,6 @@ workflows:
   promote_to_prod:
     jobs:
       - create_and_deploy_frontend
-      - promote_to_prod
+      - promote_to_prod:
           requires:
             - create_and_deploy_frontend
