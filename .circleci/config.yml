@@ -7,6 +7,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install curl
+          command: |
+            apk add --update curl
+      - run:
           name: check webpage
           command: |
             if curl -s --head http://google.com
