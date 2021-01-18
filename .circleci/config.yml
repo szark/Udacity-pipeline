@@ -30,6 +30,7 @@ jobs:
             --template-file cloudfront.yml \
             --stack-name cloudfront \
             --parameter-overrides PipelineID=s-${CIRCLE_WORKFLOW_ID:0:7}
+            --region us-west-2
      
 workflows:
   version: 2.1
