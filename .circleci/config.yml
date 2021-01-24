@@ -11,7 +11,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update curl
-            pip3 install awscli
+            apk add --install py3-pip && pip3 install --upgrade pip && pip3 install awscli
 
 workflows:
   # Name the workflow "welcome"
